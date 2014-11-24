@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mysqld_safe --skip-grant-tables &
+mysqld_safe &
 pid=$!
 if [ ! -d "/var/lib/mysql/performance_schema" ]; then
     mysql_install_db --datadir=/var/lib/mysql
