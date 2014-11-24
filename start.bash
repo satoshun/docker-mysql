@@ -2,10 +2,13 @@
 
 mysqld_safe --skip-grant-tables &
 pid=$!
-mysql_install_db --datadir=/var/lib/mysql
+if [ ! -d "/var/lib/mysql/performance_schema" ]; then
+    mysql_install_db --datadir=/var/lib/mysql
+fi
+
 mysqladmin --silent --wait=30 ping || exit 1
-mysql -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;'
-mysql -e -uroot 'CREATE DATABASE blog'
+mysql -e 'GRANT ALL PRIVILEGES ON *.* TO "root"@"%" WITH GRANT OPTION;'
+mysql -uroot -e 'CREATE DATABASE if not exists blog;'
 kill $pid
 
 mysqld_safe
