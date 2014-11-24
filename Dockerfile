@@ -23,11 +23,13 @@ RUN \
 # Define mountable directories.
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
+ADD start.bash /mysql-start
+
 # Define working directory.
 WORKDIR /data
 
 # Define default command.
-CMD ["mysqld_safe"]
+CMD ["bash", "/mysql-start"]
 
 # Expose ports.
 EXPOSE 3306
