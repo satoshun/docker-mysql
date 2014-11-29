@@ -24,6 +24,7 @@ RUN \
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
 ADD start.bash /mysql-start
+ADD init.bash /mysql-init
 
 # Define working directory.
 WORKDIR /data
