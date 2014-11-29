@@ -8,7 +8,7 @@ fi
 
 mysqladmin --silent --wait=30 ping || exit 1
 mysql -e 'GRANT ALL PRIVILEGES ON *.* TO "root"@"%" WITH GRANT OPTION;'
-mysql -uroot -e 'CREATE DATABASE if not exists blog;'
+mysql -uroot -e 'CREATE DATABASE if not exists blog CHARACTER SET utf8 COLLATE utf8_general_ci;'
 kill $pid
 
 mysqld_safe
